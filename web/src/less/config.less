@@ -1,0 +1,127 @@
+* {
+  font-family: 'Open Sans', sans-serif;
+  margin: 0;
+  padding: 0;
+  font-size: 13px;
+  box-sizing: border-box;
+}
+a {
+  text-shadow: none;
+  cursor: pointer;
+  text-decoration: none;
+  color: #222;
+  &:hover {
+    text-decoration: none;
+  }
+  &.blue {
+    color: #166cc7;
+    font-weight: 400;
+  }
+}
+ul {
+  list-style: none;
+  padding: 0;
+}
+h1,h2,h3,h4,h5,h6,p {
+  margin: 0;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  td, th {
+    padding: 3px;
+  }
+}
+
+
+table.default {
+  width: 100%;
+  border-collapse: collapse;
+  td, th {
+    padding: 3px;
+    position: relative;
+  }
+  thead {
+    th {
+      text-align: left;
+      border: 1px solid #b6b6b6;
+    }
+  }
+  tbody {
+    tr {
+      &.green {
+        td {
+          background: #00b700;
+        }
+      }
+      &.yellow {
+        td {
+          background: #ff0;
+        }
+      }
+      &.red {
+        td {
+          background: #ff7d7d;
+        }
+      }
+      td {
+        cursor: pointer;
+        text-align: left;
+        border: 1px solid #b6b6b6;
+        &:last-child {
+          width: 215px;
+        }
+        &:first-child {
+          width: 90px;
+        }
+      }
+    }
+  }
+}
+
+input {
+	border-style: none;
+  outline: none !important;
+  border: 1px solid #8f8f8f;
+  border-radius: 2px;
+  padding: 5px 10px;
+}
+textarea {
+  padding: 5px 10px;
+}
+button {
+	border-style: none;
+  padding: 8px 10px;
+  outline: none !important;
+  border: 1px solid #afafaf;
+  border-radius: 2px;
+  background: #fff;
+  cursor: pointer;
+  &.default {
+    background: #efefef;
+    width: 200px;
+    box-shadow: 0 0 1px 0 rgba(0,0,0,.2);
+    &:hover {
+      background: #dadada;
+    }
+  }
+}
+.breadcrumb {
+  padding: 8px 0;
+}
+p.error {
+  color:#ce4646;
+}
+input.error, div.error, button.error, textarea.error {
+  background: #ffdfdf;
+  border: 1px solid #ff7b7b;
+}
+
+.ng-leave {
+  display: none !important;
+}
+
+span.light {
+  color: #565656;
+  font-weight: 100;
+}
