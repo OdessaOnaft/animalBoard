@@ -88,9 +88,6 @@ angular.module("animalBoard")
       loopBottom:true,
       loopHorizontal:false,
       
-      afterResize:function(link,index) {
-        alert('Hello');
-        },
       afterLoad:function(link,index) {
         
         if(index == 3) {
