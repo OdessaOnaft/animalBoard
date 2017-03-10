@@ -1,10 +1,14 @@
 angular.module("animalBoard", ['ui.router', 'ui.date', 'ngAnimate', 'ngSanitize', 'hljs'])
 	.run(['$state', '$rootScope', '$location',  ($state, $rootScope, $location)=>{
 		var path = $location.url()
-    if(path[path.length-1] != '/' && path.indexOf("?")==-1){
-    	console.log(path.indexOf("?"), path, $location)
-      $location.path(path+'/')
-    }
+	    if(path[path.length-1] != '/' && path.indexOf("?")==-1){
+	    	console.log(path.indexOf("?"), path, $location)
+	      $location.path(path+'/')
+	    }
+	    if(path.indexOf('#')!=-1){
+	    	$state.go('main')
+	    	$location.path('/')
+	    }
 	}])
 	.config(['$locationProvider', '$stateProvider', '$urlRouterProvider', 'hljsServiceProvider',
 	  ($locationProvider, $stateProvider, $urlRouterProvider, hljsServiceProvider) =>{
@@ -21,9 +25,9 @@ angular.module("animalBoard", ['ui.router', 'ui.date', 'ngAnimate', 'ngSanitize'
 		    
 		  });
 	    $stateProvider
-	      .state('404', {
-          url:'/404/',
-          templateUrl: "/html/404.html"
+	        .state('404', {
+		        url:'/404/',
+		        templateUrl: "/html/404.html"
 		    })
 	      .state('main', {
 	        url:'/',
