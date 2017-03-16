@@ -1,0 +1,40 @@
+.content-wrapper {
+	margin-left: 100px;
+	aside {
+		position: fixed;
+		top: 0;
+		left: 0;
+		bottom: 0;
+		width: 100px;
+		z-index: 10000;
+
+		background-color: #454545 ;
+		.custom-label  input {
+			display: none;
+		}
+		input:checked + span {
+			background-color: #9C9C9C;
+			border: solid #9C9C9C;
+			color: black;
+		}
+		.custom-label  span {
+			display:inline-block;
+			width: 100px;
+			height: 40px;
+			line-height: 40px;
+			margin-top: 3px;
+
+			cursor: pointer;
+			background: #454545 ;
+			border:  solid #454545 ;
+			color: #9C9C9C;
+			text-align: center;
+			&:hover {
+				border:  solid #9C9C9C;
+			}
+		}
+	}
+}
+.as-bt {
+	margin-top: 100px;
+}

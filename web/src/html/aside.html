@@ -1,0 +1,31 @@
+<div class="content-wrapper">
+	<aside>
+		<div class="aside-logo">
+			fuck this logo
+		</div>
+		<label class="custom-label">
+			<input  type="radio" ng-model="aside.section" value="1"/>
+			<span>Потерянные</span>
+		</label> 
+		<label class="custom-label">
+			<input  type="radio" ng-model="aside.section" value="2"/>
+			<span>Найденые</span>
+		</label> 
+		<label class="custom-label">
+			<input  type="radio" ng-model="aside.section" value="3"/>
+			<span>Приютить</span>
+		</label> 
+		<label class="custom-label">
+			<input  type="radio" ng-model="aside.section" value="4"/>
+			<span >Пристроить</span>
+		</label> 
+	</aside>
+	<section ng-show="!aside.section">
+		Доска обьявлений<br>
+		Выберете рубрику
+	</section>
+	<section ng-show="aside.section==1">Потерянные</section>
+	<section ng-show="aside.section==2">Найденые</section>
+	<section ng-show="aside.section==3">Приютить</section>
+	<section ng-show="aside.section==4">Пристроить</section>
+</div>
