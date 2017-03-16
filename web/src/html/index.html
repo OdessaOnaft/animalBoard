@@ -3,6 +3,14 @@
 	<div class="section" id="section0">
 		<div class="upper-bg1">
 			<div class="intro">
+			<button class="default" ng-click="addDemoPoster()">add demo poster</button>
+			<button class="default" ng-click="getPosters()">get posters</button>
+
+			<div class="posters">
+				<div class="poster" ng-repeat="poster in posters">
+					{{poster}}
+				</div>
+			</div>
 				<!-- <h1>Страница 1</h1>
 				<p>Произвольный текст</p> -->
 				<div id="map-demo"></div>
@@ -13,10 +21,20 @@
 		<div class="upper-bg2">
 		    <div class="slide" id="slide1">
 					<div class="intro">
-						<h1>Слайд 1</h1>
-						<p>
-							Для перехода к следующему слайду, нажмите по одной из кнопок панели навигации
-						</p>
+						<h1>Login</h1>
+						<div class="form">
+							<table>
+								<tr>
+									<td>Login</td>
+									<td><input type="text" ng-model="user.email" placeholder="Enter your email"></td>
+								</tr>
+								<tr>
+									<td>password</td>
+									<td><input ng-model="user.password" type="password" placeholder="Enter you password"></td>
+								</tr>
+							</table>
+							<button ng-click="login()" class="default">Login</button>
+						</div>
 					</div>
 			</div>
 

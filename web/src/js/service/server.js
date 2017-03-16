@@ -5,16 +5,16 @@ angular.module("animalBoard")
       'login',
       'addPoster',
       'getPosters',
-      'removeAllPosters'
+      'removeAllPosters',
+      'register',
+      'getProfile'
     ]
     var addMethod = (methodName)=>{
       api[methodName] = (data, callback)=>{
         var domain = "localhost"
         // domain = "webjudgeapi.westcentralus.cloudapp.azure.com"
         
-        data.cookies = {
-          sessionId: localStorage.token
-        }
+        data.token = localStorage.token
         var request = $.ajax({
           url: 'http://'+domain+'/call/'+methodName,
           method: 'POST',

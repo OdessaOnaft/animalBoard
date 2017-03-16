@@ -72,9 +72,16 @@ function getHandler(currApi){
         });
     }
 }
+
 var mongoConnectionSettings = {
   host: 'localhost',
   port:27017,
+  db: 'board'
+}
+
+mongoConnectionSettings = {
+  host: 'animalBoard:1q2w3e4r5t@ds153765.mlab.com',
+  port:53765,
   db: 'board'
 }
 var db = mongojs("mongodb://"+mongoConnectionSettings.host+":"+mongoConnectionSettings.port+"/"+mongoConnectionSettings.db, ['board']);

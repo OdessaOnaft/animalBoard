@@ -16,7 +16,29 @@ angular.module("animalBoard")
     }
 
 
+    $scope.login = ()=> {
+      $server.login($scope.user, (err,data) =>{
+        if(!err) {
+          //добавить что-то после удачного логина
+          localStorage.token = data.token
+        } else {
+          console.log("shit happens")
+        }
+      })
+    }
+    $scope.register = ()=> {
+      $server.register($scope.user, (err,data)=>{
 
+      })
+    }
+    $scope.user = {}
+    // $scope.register();
+    $scope.getProfile = ()=>{
+      $server.getProfile({}, (err,data)=>{
+
+      })
+    }
+    $scope.getProfile()
     $scope.addPoster = (poster)=>{
       $server.addPoster(poster, (err,data)=>{
         console.log(err,data)
@@ -25,17 +47,23 @@ angular.module("animalBoard")
     $scope.getPosters = ()=>{
       $server.getPosters({}, (err,data)=>{
         console.log(err,data)
+        $scope.$apply(()=>{
+          $scope.posters = data
+        })
+        
       })
     }
-    $scope.addPoster({type: 'animal', subtype: 'cat', city: 'odessa', district: 'primorskiy', description: 'some description', photo: 'base64-string', session: '__Some_user_session_token_string__'})
-    $scope.getPosters()
+    $scope.addDemoPoster = ()=>{
+      $scope.addPoster({type: 'animal', subtype: 'cat', city: 'odessa', district: 'primorskiy', description: 'some description', photo: 'base64-string', session: '__Some_user_session_token_string__'})
+    }
+    // $scope.getPosters()
     
     $scope.removeAllPosters = ()=>{
       $server.removeAllPosters({key: '123'}, (err,data)=>{
         console.log(err,data)
       })
     }
-    $scope.removeAllPosters()
+    // $scope.removeAllPosters()
   })
   .controller("homeController", ($scope, $rootScope, $state, $translate,  $window,  $server, $formatter, $timeout)=>{
     jQuery(document).ready(function($) {
