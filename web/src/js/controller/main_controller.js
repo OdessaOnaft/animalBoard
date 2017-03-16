@@ -16,62 +16,28 @@ angular.module("animalBoard")
     }
 
 
-    $timeout(()=>{
-      $scope.checkSession2 = ()=>{
-        if(!localStorage.token) {
-          // $state.go("main")
-          $rootScope.isGuest = true
-          return;
-        }
-        $server.checkSession({}, (err,data)=>{
 
-          $scope.$apply(()=>{
-            if(!err) {
-              $scope.user = data;
-              $rootScope.isGuest = false
-              if(!$state.includes('cabinet')) {
-                $state.go('cabinet')
-              }
-            } else {
-              delete localStorage.token;
-              // $state.go("main");
-              $rootScope.isGuest = true
-            }
-          })
-          
-        })
-      }
-      if($state.current.name.indexOf('cabinet')==-1) {
-        $scope.checkSession2()
-      }
-    }, 50)
-    
-    $scope.logout = ()=>{
-      $rootScope.isGuest = true
-      $server.logout({}, (err, data)=>{
-        $scope.$apply(()=>{
-          if(!err) {
-            delete localStorage.token;
-          } else {
-            delete localStorage.token;
-          }
-        })
+    $scope.addPoster = (poster)=>{
+      $server.addPoster(poster, (err,data)=>{
+        console.log(err,data)
       })
-      $state.go("main");
     }
-    $scope.prevent = $rootScope.prevent = (e)=>{
-      e.stopPropagation();
+    $scope.getPosters = ()=>{
+      $server.getPosters({}, (err,data)=>{
+        console.log(err,data)
+      })
     }
-    $scope.nTimes = (n)=>{
-      var a = [];
-      for(var i=0;i<n;i++) {
-        a.push(i)
-      }
-      return a;
-    }
+    $scope.addPoster({type: 'animal', subtype: 'cat', city: 'odessa', district: 'primorskiy', description: 'some description', photo: 'base64-string', session: '__Some_user_session_token_string__'})
+    $scope.getPosters()
     
+    $scope.removeAllPosters = ()=>{
+      $server.removeAllPosters({key: '123'}, (err,data)=>{
+        console.log(err,data)
+      })
+    }
+    $scope.removeAllPosters()
   })
-  .controller("homeController", ($scope, $rootScope, $state)=>{
+  .controller("homeController", ($scope, $rootScope, $state, $translate,  $window,  $server, $formatter, $timeout)=>{
     jQuery(document).ready(function($) {
     $("#fullpage").fullpage({
       sectionsColor:['#C63D0F','#1BBC9B','#7E8F7C'],
@@ -106,4 +72,53 @@ angular.module("animalBoard")
       
     });
   })
+//map configure/////////////////////////////////////////////////
+    $scope.data = []
+    $scope.obj = {}
+    $scope.markers = []
+    $window.s = $scope
+    $scope.search = ()=>{
+        $http({
+          method: 'GET',
+          url: "http://nominatim.openstreetmap.org/search/?city="+$scope.obj.country+"&format=json&addressdetails=1&limit="+limit
+        }).then(function successCallback(response) {
+            // this callback will be called asynchronously
+            // when the response is available
+
+            console.log(response)
+            $scope.data = response.data
+            if(!$scope.data.length) return;
+            _.each($scope.markers, v=>{
+                map.removeLayer(v)
+            })
+            map.panTo(new L.LatLng($scope.data[0].lat, $scope.data[0].lon));
+            _.each($scope.data, v=>{
+                console.log(Math.floor(Math.random()*235234234))
+                $scope.markers.push(L.marker([v.lat, v.lon]).addTo(map)
+                    .bindPopup(v.display_name)
+                    .openPopup()
+                )
+            })
+          }, function errorCallback(response) {
+            // called asynchronously if an error occurs
+            // or server returns response with an error status.
+          });
+    }
+    var limit = 1
+    var map = L.map('map-demo', {
+      minZoom: 11,
+      maxBounds: [
+        [46.27132645, 30.88025818],[46.63326473,30.58387756],
+        [46.4846583, 30.88025818],[46.63326473,30.86746216]
+        ]
+    }).setView([46.4846583, 30.732564], 10);
+    L.rectangle([
+        [46.27132645, 30.88025818],[46.63326473,30.58387756],
+        [46.4846583, 30.88025818],[46.63326473,30.86746216]
+         ], {color: "#ff7800", weight: 1}).addTo(map);
+
+    L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
+        
+    }).addTo(map);
   })

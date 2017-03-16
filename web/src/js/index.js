@@ -33,6 +33,7 @@ angular.module("animalBoard", ['ui.router', 'ui.date', 'ngAnimate', 'ngSanitize'
 	        url:'/',
 	        templateUrl: "/html/index.html",
 	        controller: "homeController"
+
         })
 	      .state('aside', {
 	        url:'/aside/',
@@ -107,6 +108,6 @@ angular.module("animalBoard", ['ui.router', 'ui.date', 'ngAnimate', 'ngSanitize'
 	        url:'groups/',
 	        templateUrl: "/html/groups.html",
 	        controller: "groupsController"
-		    });
+		    })
 	  }
 	])

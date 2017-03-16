@@ -2,12 +2,15 @@ angular.module("animalBoard")
   .factory('$server', ($state)=>{
     var api = {}
     var methods = [
-      
+      'login',
+      'addPoster',
+      'getPosters',
+      'removeAllPosters'
     ]
     var addMethod = (methodName)=>{
       api[methodName] = (data, callback)=>{
         var domain = "localhost"
-        domain = "webjudgeapi.westcentralus.cloudapp.azure.com"
+        // domain = "webjudgeapi.westcentralus.cloudapp.azure.com"
         
         data.cookies = {
           sessionId: localStorage.token
