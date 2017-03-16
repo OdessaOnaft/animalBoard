@@ -37,8 +37,7 @@ angular.module("animalBoard", ['ui.router', 'ui.date', 'ngAnimate', 'ngSanitize'
         })
 	      .state('aside', {
 	        url:'/aside/',
-	        templateUrl: "/html/aside.html",
-	        controller: "homeController"
+	        templateUrl: "/html/aside.html"
         })
 	      .state('register', {
 	        url:'/register/',
