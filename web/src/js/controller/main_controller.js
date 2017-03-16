@@ -72,7 +72,6 @@ angular.module("animalBoard")
       anchors:['firstPage','secondPage','3rdPage'],
       menu:'#menu',
       scrollBar:false,
-      scrollOverflow:true,
       navigation:true,
       navigationTooltips:['Секция 1','Секция 2','Секция 3'],
       slidesNavigation:true,
